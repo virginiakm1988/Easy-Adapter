@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 import torch
+from torch import nn
 from typing import Dict
-
-
 def mark_only_adapter_as_trainable(model: nn.Module, bias: str = 'none') -> None:
     for n, p in model.named_parameters():
         if 'adapter' not in n:
