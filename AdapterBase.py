@@ -8,7 +8,15 @@ from .adapters import (
     ConvAdapter,
     HoulsbyAdapter,
     AdapterBias,
+    
 )
+
+
+PEFT_TYPE_MAPPING = {
+    'houlsby': Houlsby_Adapter,
+    'AdapterBias': AdapterBias,
+    'conv_adapter': Conv_Adapter,
+}
 
 class AdaptBERTBase(BertOutput):
     """Implementation of Adapter-BERT"""
@@ -19,7 +27,7 @@ class AdaptBERTBase(BertOutput):
         self.dense = nn.Linear(config.intermediate_size, config.hidden_size)
         self.LayerNorm = nn.LayerNorm(config.hidden_size, eps=config.layer_norm_eps)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
-        self.adapter = HoulsbyAdapter(config.hidden_size)
+        self.adapter = PEFT_TYPE_MAPPING[config.adapter]
 
     def forward(self, hidden_states, input_tensor):
         hidden_states = self.dense(hidden_states)
