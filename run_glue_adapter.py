@@ -23,8 +23,9 @@ import random
 import sys
 from dataclasses import dataclass, field
 from typing import Optional
-
+from adapter_bert import adapted_bert_output
 import numpy as np
+from utils import mark_only_adapter_as_trainable
 from datasets import load_dataset, load_metric
 
 import transformers
@@ -293,6 +294,12 @@ def main():
         revision=model_args.model_revision,
         use_auth_token=True if model_args.use_auth_token else None,
     )
+    model.config.adapter = "houlsby"
+    #add adapter module in a bert model
+    for idx, layer in enumerate(model.bert.encoder.layer):
+        model.bert.encoder.layer[idx].output = adapted_bert_output(model.bert.encoder.layer[idx].output, model.config)
+    mark_only_adapter_as_trainable(model)
+
 
     # Preprocessing the datasets
     if data_args.task_name is not None:
