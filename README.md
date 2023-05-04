@@ -7,6 +7,16 @@
 
 This code demonstrates how to fine-tune a BERT model based on the Hugging Face Transformers library using adapters. Adapters are a parameter-efficient way to fine-tune a pre-trained language model for a specific NLP task.
 
+## Fine-tuning with adapters on the GLUE benchmark
+```
+bash run_glue_adapter.sh
+```
+
+## Fine-tuning with adapters on IMdB task
+```
+python run_imdb.py
+```
+
 If you use this code in your research, please cite the following papers:
 
 ```
