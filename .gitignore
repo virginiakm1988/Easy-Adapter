@@ -1,0 +1,4 @@
+./glue_data/
+./test_trainer/
+.tsv
+#touch .gitignore

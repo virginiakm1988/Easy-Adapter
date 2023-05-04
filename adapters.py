@@ -61,3 +61,16 @@ class AdapterBias(nn.Module):
 
     def forward(self, x):
         return self.adapter_vector * self.adapter_alpha(x)
+
+class LoRA(nn.Module):
+    def __init__(
+            self,
+            input_size,
+            dropout = 0.8,
+            r = 16
+        ):
+        super().__init__()
+        self.lora_adapter = lora.Linear(input_size, input_size, r)
+        
+    def forward(self, x):
+        return self.lora_adapter(x)
