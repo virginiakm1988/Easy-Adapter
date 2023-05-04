@@ -1,8 +1,11 @@
 # Parameter-efficient Fine-tuning in NLP
+## Code for AdapterBias: Parameter-efficient Token-dependent Representation Shift for Adapters in NLP Tasks
+
+[![Version](https://img.shields.io/badge/Version-v0.1.0-blue?color=FF8000?color=009922)](https://img.shields.io/badge/Version-v0.1.0-blue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
+[![Hugging Face Transformers](https://img.shields.io/badge/%F0%9F%A4%97-Transformers-pink?color=FF33CC)](https://github.com/huggingface/transformers)
 
 This code demonstrates how to fine-tune a BERT model based on the Hugging Face Transformers library using adapters. Adapters are a parameter-efficient way to fine-tune a pre-trained language model for a specific NLP task.
-
-The code was written by [Zih-Ching Chen](https://github.com/virginiakm1988).
 
 If you use this code in your research, please cite the following papers:
 
