@@ -296,8 +296,10 @@ def main():
     )
     model.config.adapter = "houlsby"
     #add adapter module in a bert model
+    original_state_dict = model.state_dict()
     for idx, layer in enumerate(model.bert.encoder.layer):
         model.bert.encoder.layer[idx].output = adapted_bert_output(model.bert.encoder.layer[idx].output, model.config)
+    model.load_state_dict(original_state_dict, strict = False)
     mark_only_adapter_as_trainable(model)
 
 

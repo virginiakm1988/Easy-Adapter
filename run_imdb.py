@@ -17,9 +17,11 @@ full_eval_dataset = tokenized_datasets["test"]
 
 model_bert = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased")
 model_bert.config.adapter = "houlsby"
+original_state_dict = model_bert.state_dict()
 for idx, layer in enumerate(model_bert.bert.encoder.layer):
   model_bert.bert.encoder.layer[idx].output = adapted_bert_output(model_bert.bert.encoder.layer[idx].output, model_bert.config)
 #freeze parameters
+model_bert.load_state_dict(original_state_dict,strict = False)
 mark_only_adapter_as_trainable(model_bert)
 
 training_args = TrainingArgumentsWithMPSSupport("test_trainer")
