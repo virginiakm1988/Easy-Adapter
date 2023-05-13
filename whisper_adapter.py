@@ -79,7 +79,7 @@ def load_adapter_model(
 
     dims = whisper.ModelDimensions(**checkpoint["dims"])
     model = whisper.Whisper(dims)
-    print(model.dims)
+    #print(model.dims)
    
     for id in range(len(model.encoder.blocks)):
       model.encoder.blocks[id] = AdapterResidualAttentionBlock(n_state = dims.n_audio_state, n_head = dims.n_audio_head)
