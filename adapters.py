@@ -70,7 +70,7 @@ class LoRA(nn.Module):
             r = 16
         ):
         super().__init__()
-        self.lora_adapter = lora.Linear(input_size, input_size, r)
+        self.lora_adapter = nn.Linear(input_size, input_size, r)
         
     def forward(self, x):
         return self.lora_adapter(x)
