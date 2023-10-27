@@ -19,9 +19,9 @@ class adapted_bert_output(nn.Module):
       self.adapter = HoulsbyAdapter(config.hidden_size)
     elif config.adapter == "conv_adapter":
       self.adapter = ConvAdapter(config.max_position_embeddings)
-    elif self.adapter == "AdapterBias":
+    elif config.adapter == "AdapterBias":
       self.adapter = AdapterBias(config.hidden_size)
-    elif self.adapter == "lora":
+    elif config.adapter == "lora":
       self.adapter = LoRA(config.hidden_size)
     else:
       raise NotImplementedError
